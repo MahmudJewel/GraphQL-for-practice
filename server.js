@@ -7,6 +7,11 @@ var { graphqlHTTP } = require('express-graphql');
 const userData = require('./user.json');
 
 let fakeDB = {}
+let demoDB = [
+  { id: '0', name: 'Jewel', rent: '$25' },
+  { id: '1', name: 'Mahmud', rent: '$35' },
+  { id: '2', name: 'Jahid', rent: '$45' },
+]
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
@@ -16,14 +21,28 @@ var schema = buildSchema(`
     email: String
   }
 
+  type Space{
+    id: ID!
+    name:String
+    rent: String
+  }
+
   type Query {
     users : [Person]
     user(id:Int, text:String) : Person
     getMsg: String
+    getSpace(id:ID!): Space
+  }
+
+  input SpaceInput{
+    name:String 
+    rent:String
   }
 
   type Mutation {
     addMsg(msg: String): String
+    addSpace(id:ID!, name:String, rent:String): Space!
+    updateSpace(id:ID!, input:SpaceInput): Space!
   }
 `);
 
@@ -33,17 +52,31 @@ var root = {
     return userData
   },
 
-  user: ({id, text})=>{
+  user: ({ id, text }) => {
     console.log('===========', text)
-    return userData.find(user=>user.id===id)
+    return userData.find(user => user.id == id)
   },
 
-  addMsg:({msg})=>{
+  addMsg: ({ msg }) => {
     return fakeDB.msg = msg  // ???
   },
-  
-  getMsg:()=>{
+
+  getMsg: () => {
     return fakeDB.msg
+  },
+
+  addSpace: ({id, name, rent}) =>{
+    console.log('======', demoDB)
+    return demoDB[demoDB.length]={id, name, rent}
+  },
+
+  getSpace: ({id})=>{
+    console.log('======>', demoDB.find(space=>space.id===id))
+    return demoDB.find(space=>space.id===id)
+  },
+
+  updateSpace: ({id,input})=>{
+    return demoDB[id]={id:id, name:input.name, rent:input.rent}
   }
 
 };
@@ -67,6 +100,7 @@ app.listen(4000);
 // }).then((response) => {
 //   console.log(response);
 // });
+
 
 
 
