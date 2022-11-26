@@ -32,6 +32,7 @@ var schema = buildSchema(`
     user(id:Int, text:String) : Person
     getMsg: String
     getSpace(id:ID!): Space
+    get_all_spaces: [Space]
   }
 
   input SpaceInput{
@@ -65,6 +66,10 @@ var root = {
     return fakeDB.msg
   },
 
+  get_all_spaces:()=>{
+    return demoDB
+  },
+  
   addSpace: ({id, name, rent}) =>{
     console.log('======', demoDB)
     return demoDB[demoDB.length]={id, name, rent}
