@@ -11,6 +11,7 @@ var schema = buildSchema(`
     type Pet{
         id: Int
         name: String
+        email:String
         pet: String
         pet_name: String
     }
@@ -21,9 +22,8 @@ var schema = buildSchema(`
 `);
 
 // The rootValue provides a resolver function for each API endpoint
-
 var root = {
-    all_pet: () =>{
+    all_pet: () => {
         return petData
     }
 };
@@ -34,10 +34,11 @@ var root = {
 // ******************* start for GraphiQL=GUI *******************
 var app = express();
 app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
 }));
 
 app.listen(4000);
 // ******************* End for GraphiQL *******************
+

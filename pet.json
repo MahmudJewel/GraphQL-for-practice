@@ -2,6 +2,7 @@
     {
         "id": 1,
         "name": "Jewel",
+        "email": "user1@mail.com",
         "pet": "Dog",
         "pet_name": "Dog-1"
     },
@@ -9,6 +10,7 @@
     {
         "id": 2,
         "name": "Jewel",
+        "email": "user2@mail.com",
         "pet": "Dog",
         "pet_name": "Dog-2"
     },
@@ -16,18 +18,21 @@
     {
         "id": 3,
         "name": "Jewel",
+        "email": "user3@mail.com",
         "pet": "Dog",
         "pet_name": "Dog-3"
     },
     {
         "id": 4,
         "name": "Jahid",
+        "email": "user4@mail.com",
         "pet": "Cat",
         "pet_name": "Cat-1"
     },
     {
         "id": 5,
         "name": "Mahmud",
+        "email": "user5@mail.com",
         "pet": "Cat",
         "pet_name": "Cat-2"
     }
