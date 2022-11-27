@@ -19,14 +19,20 @@ var schema = buildSchema(`
         id: ID!
         name: String
         rent: String
-        status: String
+        status: status_for_space
     }
+
+    enum status_for_space{
+      available
+      not_available
+    }
+
     type Query{
         get_all_spaces: [Space]
     }
 
     type Mutation{
-        add_spaces(id:ID!, name:String, rent:String, status:String): Space
+        add_spaces(id:ID!, name:String, rent:String, status:status_for_space): Space
     }
 `);
 
