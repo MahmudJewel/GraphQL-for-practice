@@ -21,7 +21,7 @@ var schema = buildSchema(`
         rent: String
         status: status_for_space
     }
-
+ 
     enum status_for_space{
       available
       not_available
